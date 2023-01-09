@@ -1,13 +1,11 @@
 
 public class NumberConverter {
 
-    private final String[] ALL_CHAR;
+    private static final String[] ALL_CHAR = new String[64];
     private int b10Num;
     private String origNum;
 
-    public NumberConverter(int num, int base) {
-        ALL_CHAR = new String[64];
-
+    public NumberConverter(String num, int base) {
         for(int i = 0; i <= 9; i++) {
             ALL_CHAR[i] = i + "";
         }
@@ -23,17 +21,17 @@ public class NumberConverter {
         ALL_CHAR[62] = "+";
         ALL_CHAR[63] = "/";
 
-        origNum = num + "";
+        origNum = num;
 
         if (base == 10) {
-            b10Num = num;
+            b10Num = Integer.parseInt(num);
         } else {
             b10Num = nBaseToB10(base);
         }
 
     }
 
-    public String b10ToNBase(int baseN) {
+    public String toNBase(int baseN) {
         String conversion = "";
         int num = b10Num;
 
@@ -54,8 +52,8 @@ public class NumberConverter {
             oNum[i] = findInd(oNum[i]) + "";
         }
 
-        for (int i = oNum.length - 1; i >= 0; i--) {
-            int num = Integer.parseInt(oNum[i]);
+        for (int i = 0; i < oNum.length; i++) {
+            int num = Integer.parseInt(oNum[oNum.length - i - 1]);
 
             sum += (num * Math.pow(baseN, i));
         }
@@ -63,8 +61,8 @@ public class NumberConverter {
         return sum;
     }
 
-    public int getB10Num() {
-        return b10Num;
+    public static String[] getAllChar() {
+        return ALL_CHAR;
     }
 
     private int findInd(String symbol) {
