@@ -4,6 +4,10 @@ import java.util.Arrays;
 class ConverterRunner {
     public static void main(String[] args) {
 
+        NumberConverter test = new NumberConverter(591,17);
+        System.out.println(test.getB10Num());
+
+/*
         System.out.println("Welcome to the Number Converter!");
         System.out.println("--------------------------------");
         System.out.print("Enter the base of your number (2, 8 or 10): ");
@@ -20,7 +24,7 @@ class ConverterRunner {
 
 
 
-        /*
+
         NumberConverter nc = new NumberConverter(n, base);
         int[] digits = nc.getDigits();
         System.out.println("\n\nDigit array: " + Arrays.toString(digits));
