@@ -33,11 +33,20 @@ public class NumberConverter {
 
     public String toNBase(int baseN) {
         String conversion = "";
-        int num = b10Num;
 
-        while (num != 0) {
-            conversion = ALL_CHAR[num % baseN] + conversion;
-            num /= baseN;
+        if (baseN == 1) {
+
+            for (int i = 1; i <= b10Num; i++) {
+                conversion += "1";
+            }
+
+        } else {
+            int num = b10Num;
+
+            while (num != 0) {
+                conversion = ALL_CHAR[num % baseN] + conversion;
+                num /= baseN;
+            }
         }
 
         return conversion;

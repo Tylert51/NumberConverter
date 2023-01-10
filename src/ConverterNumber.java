@@ -9,37 +9,69 @@ class ConverterNumber {
 
         System.out.println("Welcome to the Number Converter!");
         System.out.println("--------------------------------");
-        System.out.print("Enter the base of your number (2, 8, 10 ,16): ");
-        ArrayList<String> possibleBases = new ArrayList<String>(Arrays.asList("2", "8", "10", "16"));
-        ArrayList<String> basesNames = new ArrayList<String>(Arrays.asList("Binary", "Octal", "Decimal", "Hexadecimal"));
 
-        String base = s.nextLine();
+        System.out.print("Would you like to do basic (1) conversion or conversion to any base from base 10 (2): ");
+        String choice = s.nextLine();
 
-        while (!possibleBases.contains(base)) {
-            System.out.print("Not a valid base. Re-enter a valid base (2, 8, 10, or 16): ");
-            base = s.nextLine();
+        while( !choice.equals("1") && !choice.equals("2") ) {
+            System.out.print("Invalid choice. Enter 1 for basic and 2 for conversion to any base: ");
+            choice = s.nextLine();
         }
-        int indOfBase = possibleBases.indexOf(base);
 
-        possibleBases.remove(base);
-        basesNames.remove(indOfBase);
+        if (choice.equals("1")) {
 
-        int numBase = Integer.parseInt(base);
-        System.out.print("Enter your number: ");
-        String number = s.nextLine();
+            System.out.print("Enter the base of your number (2, 8, 10 ,16): ");
+            ArrayList<String> possibleBases = new ArrayList<String>(Arrays.asList("2", "8", "10", "16"));
+            ArrayList<String> basesNames = new ArrayList<String>(Arrays.asList("Binary", "Octal", "Decimal", "Hexadecimal"));
 
-        while (!checkInput(number, numBase)) {
-            System.out.print("Not a valid number. Re-enter a valid number with your base: ");
-            number = s.nextLine();
-        }
-        System.out.println();
+            String base = s.nextLine();
 
-        NumberConverter num = new NumberConverter(number, numBase);
+            while (!possibleBases.contains(base)) {
+                System.out.print("Not a valid base. Re-enter a valid base (2, 8, 10, or 16): ");
+                base = s.nextLine();
+            }
+            int indOfBase = possibleBases.indexOf(base);
 
-        for (int i = 0; i < possibleBases.size(); i++) {
-            numBase = Integer.parseInt(possibleBases.get(i));
+            possibleBases.remove(base);
+            basesNames.remove(indOfBase);
 
-            System.out.println(basesNames.get(i) + " number: " + num.toNBase(numBase));
+            int numBase = Integer.parseInt(base);
+            System.out.print("Enter your number: ");
+            String number = s.nextLine();
+
+            while (!checkInput(number, numBase)) {
+                System.out.print("Not a valid number. Re-enter a valid number with your base: ");
+                number = s.nextLine();
+            }
+            System.out.println();
+
+            NumberConverter num = new NumberConverter(number, numBase);
+
+            for (int i = 0; i < possibleBases.size(); i++) {
+                numBase = Integer.parseInt(possibleBases.get(i));
+
+                System.out.println(basesNames.get(i) + " number: " + num.toNBase(numBase));
+            }
+        } else {
+            System.out.print("\nEnter your base 10 number: ");
+            String num = s.nextLine();
+            while (!checkInput(num, 10)) {
+                System.out.print("Invalid number. Enter a base 10 number: ");
+                num = s.nextLine();
+            }
+
+            System.out.print("Enter you desired base (1- 64): ");
+            String base = s.nextLine();
+            while (!checkBase(base)) {
+                System.out.print("Enter a valid base between 1 and 64: ");
+                base = s.nextLine();
+            }
+            int nBase = Integer.parseInt(base);
+
+            NumberConverter complicated = new NumberConverter(num, 10);
+
+            System.out.println("That is " + complicated.toNBase(nBase) + " in base " + base);
+
         }
     }
 
@@ -51,6 +83,18 @@ class ConverterNumber {
             int indOfInp = findInd(letter, allChar);
 
             if (indOfInp > base - 1 || indOfInp == -1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean checkBase(String input) {
+        String numbers = "0123456789";
+        for (int i = 0; i < input.length(); i++) {
+            String letter = input.charAt(i) + "";
+
+            if (!numbers.contains(letter)) {
                 return false;
             }
         }
