@@ -5,6 +5,7 @@ import java.util.ArrayList;
 class ConverterNumber {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
+        NumberConverter def = new NumberConverter();
 
         System.out.println("Welcome to the Number Converter!");
         System.out.println("--------------------------------");
@@ -15,7 +16,7 @@ class ConverterNumber {
         String base = s.nextLine();
 
         while (!possibleBases.contains(base)) {
-            System.out.print("Not a valid base. Re-enter a valid base(2, 8, 10, or 16): ");
+            System.out.print("Not a valid base. Re-enter a valid base (2, 8, 10, or 16): ");
             base = s.nextLine();
         }
         int indOfBase = possibleBases.indexOf(base);
@@ -31,6 +32,7 @@ class ConverterNumber {
             System.out.print("Not a valid number. Re-enter a valid number with your base: ");
             number = s.nextLine();
         }
+        System.out.println();
 
         NumberConverter num = new NumberConverter(number, numBase);
 
@@ -39,12 +41,10 @@ class ConverterNumber {
 
             System.out.println(basesNames.get(i) + " number: " + num.toNBase(numBase));
         }
-
     }
 
     private static boolean checkInput(String input, int base) {
         String[] allChar = NumberConverter.getAllChar();
-
 
         for (int i = 0; i < input.length(); i++) {
             String letter = input.charAt(i) + "";
@@ -63,7 +63,6 @@ class ConverterNumber {
                 return i;
             }
         }
-
         return -1;
     }
 }

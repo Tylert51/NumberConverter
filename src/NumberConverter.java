@@ -1,11 +1,10 @@
-
 public class NumberConverter {
 
     private static final String[] ALL_CHAR = new String[64];
     private int b10Num;
     private String origNum;
 
-    public NumberConverter(String num, int base) {
+    public NumberConverter() {
         for(int i = 0; i <= 9; i++) {
             ALL_CHAR[i] = i + "";
         }
@@ -20,7 +19,9 @@ public class NumberConverter {
         }
         ALL_CHAR[62] = "+";
         ALL_CHAR[63] = "/";
+    }
 
+    public NumberConverter(String num, int base) {
         origNum = num;
 
         if (base == 10) {
@@ -28,7 +29,6 @@ public class NumberConverter {
         } else {
             b10Num = nBaseToB10(base);
         }
-
     }
 
     public String toNBase(int baseN) {
