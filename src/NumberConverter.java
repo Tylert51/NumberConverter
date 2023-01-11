@@ -40,6 +40,8 @@ public class NumberConverter {
                 conversion += "1";
             }
 
+        } else if (origNum.equals("0")) {
+            conversion = "0";
         } else {
             int num = b10Num;
 
