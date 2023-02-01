@@ -20,7 +20,7 @@ class ConverterNumber {
 
         if (choice.equals("1")) {
 
-            System.out.print("Enter the base of your number (2, 8, 10 ,16): ");
+            System.out.print("Enter the base of your number (2, 8, 10, 16): ");
             ArrayList<String> possibleBases = new ArrayList<String>(Arrays.asList("2", "8", "10", "16"));
             ArrayList<String> basesNames = new ArrayList<String>(Arrays.asList("Binary", "Octal", "Decimal", "Hexadecimal"));
 
