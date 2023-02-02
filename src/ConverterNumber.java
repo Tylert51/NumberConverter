@@ -98,7 +98,9 @@ class ConverterNumber {
                 return false;
             }
         }
-        return true;
+
+        int number = Integer.parseInt(input);
+        return number >= 1 && number <= 64;
     }
 
     private static int findInd(String symbol, String[] array) {
