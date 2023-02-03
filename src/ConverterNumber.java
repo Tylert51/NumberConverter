@@ -60,7 +60,7 @@ class ConverterNumber {
                 num = s.nextLine();
             }
 
-            System.out.print("Enter you desired base (1- 64): ");
+            System.out.print("Enter your desired base (1 - 64): ");
             String base = s.nextLine();
             while (!checkBase(base)) {
                 System.out.print("Enter a valid base between 1 and 64: ");
